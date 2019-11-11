@@ -1,13 +1,11 @@
 const fs = require('fs');
 
-const cat = (cmd, path) => {
-    if (cmd === 'cat') {
+const cat = (writeFunc, path) => {
 	fs.readFile(path, 'utf8', (err, data) => {
 	    if (err) {
 		throw err;
 	    } else {
-		process.stdout.write(data);
-		process.stdout.write('\nprompt > ');	
+		writeFunc(data);
 	    }
 	});
     }
